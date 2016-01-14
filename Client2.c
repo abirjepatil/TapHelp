@@ -10,6 +10,7 @@
 #define DATA_LENGTH 10
 #define PACKET_LENGTH 50
 
+struct xyz{
 int x,y;
 char data[10];
 
