@@ -1,6 +1,8 @@
 package com.scu.taphelp;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,8 +29,26 @@ public class TestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		System.out.println("Hello");
+		String userName = request.getParameter("username");
+		response.setContentType("application/json");
+        PrintWriter out = response.getWriter();
+        
+        if(userName.equals("admin"))
+        {
+        	out.println("Correct Username");
+        }
+        else
+        {
+        	 out.println("{");
+             out.println("\"First Name\": \"John\",");
+             out.println("\"Last Name\": \"Doe\"");
+             out.println(userName);
+             out.println("}");
+        	
+        }
+        
+       
+        out.close();
 	}
 
 	/**
