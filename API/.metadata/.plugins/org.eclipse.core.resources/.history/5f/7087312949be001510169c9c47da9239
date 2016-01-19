@@ -1,0 +1,92 @@
+package com.scu.taphelp;
+
+
+import java.sql.*;
+
+
+public class MySQLAccess {
+	public String Connect() {
+
+		System.out.println("-------- MySQL JDBC Connection Testing ------------");
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Where is your MySQL JDBC Driver?");
+			e.printStackTrace();
+			return "[DB01]:DB Driver Error";
+		}
+	 
+		System.out.println("MySQL JDBC Driver Registered!");
+		Connection connection = null;
+
+		try {
+			connection = DriverManager
+					.getConnection("jdbc:mysql://localhost:3306/taphelp","root", "password");
+
+		} catch (SQLException e) {
+			System.out.println("Connection Failed! Check output console");
+			e.printStackTrace();
+			return "[DB02]:DB Connection Error";
+
+		}
+
+		if (connection != null) {
+			
+			Statement stmt = null;
+			ResultSet rs=null;
+			try {
+				stmt = connection.createStatement();
+				 String sql = "SELECT * FROM TBL_USER";
+			      rs = stmt.executeQuery(sql);
+			      //STEP 5: Extract data from result set
+			      while(rs.next()){
+			         //Retrieve by column name
+			         int uid  = rs.getInt("UID");
+			         int uname = rs.getInt("USER_NAME");
+			         String emailId = rs.getString("EMAIL_ID");
+			         String last = rs.getString("PASSWORD");
+			         String first = rs.getString("USER_TYPE");
+			         String last = rs.getString("FIRST_NAME");
+			         String last = rs.getString("LAST_NAME");
+			         String first = rs.getString("ADDRESS");
+			         String last = rs.getString("PINCODE");
+			         
+			         
+			         //Display values
+			         System.out.print("ID: " + id);
+			         System.out.print(", Age: " + age);
+			         System.out.print(", First: " + first);
+			         System.out.println(", Last: " + last);
+			      }
+			      
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "[DB05]:Create Statement Error";
+		
+			}
+			finally
+			{
+				
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			return "[DB04]:Connection Success";
+
+			
+			
+		} else {
+			System.out.println("Failed to make connection!");
+			return "[DB03]:DB Network Error";
+
+		}
+	}
+}

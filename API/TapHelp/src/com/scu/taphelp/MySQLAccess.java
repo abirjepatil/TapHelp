@@ -5,77 +5,113 @@ import java.sql.*;
 
 
 public class MySQLAccess {
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	   static final String DB_URL = "jdbc:mysql://127.5.69.2:3306/taphelp";
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public String Connect(String username, String usrpassword) {
 
-	   //  Database credentials
-	   static final String USER = "adminiKy82lU";
-	   static final String PASS = "TIv8hkBlHyF-";
-	   
-	   public static void main(String[] args) {
-	   Connection conn = null;
-	   Statement stmt = null;
-	   try{
-	      //STEP 2: Register JDBC driver
-	      Class.forName("com.mysql.jdbc.Driver");
+		System.out.println("-------- MySQL JDBC Connection Testing ------------");
 
-	      //STEP 3: Open a connection
-	      System.out.println("Connecting to database...");
-	      try
-	      {   
-		      conn = DriverManager.getConnection(DB_URL,USER,PASS);
-		      System.out.println("Here");
-	      }
-	      catch(Exception ex)
-	      {
-	    	 ex.printStackTrace();
-	      }
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Where is your MySQL JDBC Driver?");
+			e.printStackTrace();
+			return "[DB01]:DB Driver Error";
+		}
+	 
+		System.out.println("MySQL JDBC Driver Registered!");
+		Connection connection = null;
 
-	      //STEP 4: Execute a query
-	      System.out.println("Creating statement...");
-	      stmt = conn.createStatement();
-	      String sql;
-	      sql = "SELECT id, first, last, age FROM Employees";
-	      ResultSet rs = stmt.executeQuery(sql);
+		try {
+			connection = DriverManager
+					.getConnection("jdbc:mysql://localhost:3306/taphelp","root", "password");
+			
+			
+			//	connection = DriverManager.getConnection("jdbc:mysql://127.5.69.2:3306/taphelp","adminiKy82lU", "TIv8hkBlHyF-");
 
-	      //STEP 5: Extract data from result set
-	      while(rs.next()){
-	         //Retrieve by column name
-	         int id  = rs.getInt("id");
-	         int age = rs.getInt("age");
-	         String first = rs.getString("first");
-	         String last = rs.getString("last");
+		} catch (SQLException e) {
+			System.out.println("Connection Failed! Check output console");
+			e.printStackTrace();
+			return "[DB02]:DB Connection Error";
 
-	         //Display values
-	         System.out.print("ID: " + id);
-	         System.out.print(", Age: " + age);
-	         System.out.print(", First: " + first);
-	         System.out.println(", Last: " + last);
-	      }
-	      //STEP 6: Clean-up environment
-	      rs.close();
-	      stmt.close();
-	      conn.close();
-	   }catch(SQLException se){
-	      //Handle errors for JDBC
-	      se.printStackTrace();
-	   }catch(Exception e){
-	      //Handle errors for Class.forName
-	      e.printStackTrace();
-	   }finally{
-	      //finally block used to close resources
-	      try{
-	         if(stmt!=null)
-	            stmt.close();
-	      }catch(SQLException se2){
-	      }// nothing we can do
-	      try{
-	         if(conn!=null)
-	            conn.close();
-	      }catch(SQLException se){
-	         se.printStackTrace();
-	      }//end finally try
-	   }//end try
-	   System.out.println("Goodbye!");
-	}//end main
-} 
+		}
+
+		if (connection != null) {
+			
+			Statement stmt = null;
+			ResultSet rs=null;
+			try {
+				stmt = connection.createStatement();
+				 String sql = "SELECT * FROM TBL_USER";
+			      rs = stmt.executeQuery(sql);
+			      //STEP 5: Extract data from result set
+			      while(rs.next()){
+			         //Retrieve by column name
+			         int uid  = rs.getInt("UID");
+			         String uname = rs.getString("USER_NAME");
+			         String emailId = rs.getString("EMAIL_ID");
+			         String password = rs.getString("PASSWORD");
+			         int usrType = rs.getInt("USER_TYPE");
+			         String fname = rs.getString("FIRST_NAME");
+			         String lname = rs.getString("LAST_NAME");
+			         String address = rs.getString("ADDRESS");
+			         int pincode = rs.getInt("PINCODE");
+			         
+			         if(uname.equals(username)&&password.equals(usrpassword))
+			         {
+			        	 
+			        	 return "[AUTH01] Success";
+			         }
+			         if(uname.equals(username)&&!password.equals(usrpassword))
+			         {
+			        	 
+			        	 return "[AUTH02] Incorrect Password";
+			         }
+			         if(!uname.equals(username)&&!password.equals(usrpassword))
+			         {
+			        	 
+			        	 return "[AUTH03] User Not Registered";
+			         }
+			         
+			         
+			         
+			      }
+			      
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "[DB05]:Create Statement Error";
+		
+			}
+			finally
+			{
+				
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			return "[DB04]:Connection Success";
+
+			
+			
+		} else {
+			System.out.println("Failed to make connection!");
+			return "[DB03]:DB Network Error";
+
+		}
+	}
+}

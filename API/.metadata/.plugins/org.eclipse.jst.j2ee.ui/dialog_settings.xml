@@ -6,6 +6,8 @@
 		<item value="NULL_RUNTIME"/>
 	</list>
 	<list key="J2EE_EXPORT_JST_WEB">
+		<item value="/Users/abhishekbirjepatil/Documents/Source/taphelp/webapps/ROOT.war"/>
+		<item value="/Volumes/MAC/Git/TapHelp/WAR Files/TapHelp.war"/>
 		<item value="/Users/abhishekbirjepatil/Desktop/ROOT.war"/>
 		<item value="/Users/abhishekbirjepatil/Desktop/th.war"/>
 	</list>

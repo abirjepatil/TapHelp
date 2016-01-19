@@ -1,9 +1,0 @@
-package com.scu.taphelp;
-
-
-import java.sql.*;
-
-
-public class MySQLAccess {
- 
-} 
