@@ -4,12 +4,16 @@
 		<item value="500" key="dialogHeight"/>
 		<item value="800" key="dialogWidth"/>
 		<list key="textEntries">
+			<item value="1"/>
 		</list>
 		<list key="orderedElements">
+			<item value="com.yattasolutions.umllab.hintView"/>
 		</list>
 		<list key="orderedProviders">
+			<item value="org.eclipse.e4.ui.parts"/>
 		</list>
 		<list key="textArray">
+			<item value="uml"/>
 		</list>
 	</section>
 	<section name="NewWizardAction">

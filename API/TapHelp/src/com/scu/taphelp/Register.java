@@ -29,8 +29,18 @@ public class Register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-				String userName = request.getParameter("username");
-				String password = request.getParameter("password");
+
+	
+				String userId = request.getParameter("UID");
+				String userName = request.getParameter("USER_NAME");
+				String emailId = request.getParameter("EMAIL_ID");
+				String password = request.getParameter("PASSWORD");
+				String userType = request.getParameter("USER_TYPE");
+				String fName = request.getParameter("FIRST_NAME");
+				String lName = request.getParameter("LAST_NAME");
+				String address = request.getParameter("ADDRESS");
+				String pincode = request.getParameter("PINCODE");				
+				
 				response.setContentType("application/json");
 		        PrintWriter out = response.getWriter();
 		        
@@ -39,7 +49,7 @@ public class Register extends HttpServlet {
 		        String result = sqlinterface.Connect(userName,password);
 		        if(result.contains("[AUTH03] User Not Registered"))
 		        {
-		        	
+		        	sqlinterface.Register(userId, userName , emailId, password,userType,fName,lName,address,pincode);
 		        	
 		        }
 		        else

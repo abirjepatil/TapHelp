@@ -114,4 +114,83 @@ public class MySQLAccess {
 
 		}
 	}
+	
+	
+	
+	
+	/*
+	 * 
+	 * 
+	 */
+	
+	public String Register(String userId,String userName ,String emailId,String password,String userType,String fName,String lName,String address,String pincode) {
+
+		System.out.println("-------- MySQL JDBC Connection Testing ------------");
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Where is your MySQL JDBC Driver?");
+			e.printStackTrace();
+			return "[DB01]:DB Driver Error";
+		}
+	 
+		System.out.println("MySQL JDBC Driver Registered!");
+		Connection connection = null;
+
+		try {
+			connection = DriverManager
+					.getConnection("jdbc:mysql://localhost:3306/taphelp","root", "password");
+			
+			
+			//	connection = DriverManager.getConnection("jdbc:mysql://127.5.69.2:3306/taphelp","adminiKy82lU", "TIv8hkBlHyF-");
+
+		} catch (SQLException e) {
+			System.out.println("Connection Failed! Check output console");
+			e.printStackTrace();
+			return "[DB02]:DB Connection Error";
+
+		}
+
+		if (connection != null) {
+			
+			Statement stmt = null;
+			ResultSet rs=null;
+			try {
+				stmt = connection.createStatement();
+				 String sql = "INSERT INTO TBL_USER VALUES("+userId+",'"+userName+"',"+
+						 ")";
+			//      rs = stmt.executeUpdate(sql);
+			      
+			      
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "[DB05]:Create Statement Error";
+		
+			}
+			finally
+			{
+				
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			return "[DB04]:Connection Success";
+
+			
+			
+		} else {
+			System.out.println("Failed to make connection!");
+			return "[DB03]:DB Network Error";
+
+		}
+	}
+	 
 }
