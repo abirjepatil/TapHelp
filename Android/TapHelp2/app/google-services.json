@@ -1,0 +1,51 @@
+{
+  "project_info": {
+    "project_id": "taphelp-a53b3",
+    "project_number": "598822561939",
+    "name": "Taphelp"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:598822561939:android:ed25abe76629973a",
+        "client_id": "android:com.scu.taphelp",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.scu.taphelp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "598822561939-h4u9s29vv41sp50f538l7lrdsab0tgq4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.scu.taphelp",
+            "certificate_hash": "6667EBD181968E279B9032F7793B11DBF5D4D3E7"
+          }
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

@@ -2,132 +2,149 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.scu.taphelp.Register">
+    tools:context=".RegisterActivity">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register Now!"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            android:textSize="24dp"
+            android:id="@+id/registerText"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentTop="true" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="First Name"
         android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:id="@+id/firstName"
+        android:layout_below="@+id/registerText"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_margin="5dp"
+        android:padding="5dp" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Last Name"
+        android:ems="10"
+        android:id="@+id/lastName"
+        android:padding="5dp"
+        android:layout_alignTop="@+id/firstName"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/editText3"
-        android:layout_below="@+id/editText2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:text="email@domain.com" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/editText4"
-        android:layout_below="@+id/editText3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:text="Santa Clara" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:layout_below="@+id/editText4"
-        android:spinnerMode="dropdown" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editText5"
-        android:layout_below="@+id/spinner"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:text="95050" />
-
-    <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText6"
-        android:text="************"
-        android:layout_below="@+id/editText8"
+        android:id="@+id/password"
+        android:layout_below="@+id/firstName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:hint="Password" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberPassword"
+        android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText7"
-        android:text="************"
-        android:layout_below="@+id/editText6"
+        android:id="@+id/confirmPassword"
+        android:layout_below="@+id/password"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:hint="Confirm Password" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:ems="10"
-        android:id="@+id/editText8"
-        android:layout_below="@+id/editText5"
+        android:id="@+id/phone"
+        android:layout_below="@+id/confirmPassword"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:text="(512).123.1222" />
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:hint="Contact number" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@+id/button2"
-        android:layout_marginBottom="49dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/button3"
-        android:layout_toEndOf="@+id/button3"
-        android:layout_marginLeft="61dp"
-        android:layout_marginStart="61dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:id="@+id/button3"
-        android:layout_marginLeft="65dp"
-        android:layout_marginStart="65dp"
-        android:layout_alignTop="@+id/button2"
+        android:ems="10"
+        android:id="@+id/zipCode"
+        android:layout_below="@+id/phone"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:hint="5 Digit Zipcode"
+        android:inputType="number" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/address"
+        android:layout_below="@+id/zipCode"
+        android:layout_margin="5dp"
+        android:hint="Postal Address"
+        android:padding="5dp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/userType"
+        android:layout_below="@+id/address"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:textAlignment="center"
+        android:transitionGroup="true"
+        android:spinnerMode="dropdown" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/serviceType"
+        android:layout_below="@+id/userType"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:textAlignment="center"
+        android:transitionGroup="true"
+        android:spinnerMode="dropdown" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Register"
+        android:id="@+id/submit"
+        android:padding="5dp"
+        android:textAlignment="center"
+        android:background="#d0c1f0"
+        android:backgroundTint="#b4a2ee"
+        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

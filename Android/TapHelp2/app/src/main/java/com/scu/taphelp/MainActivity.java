@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 //
-                Intent myIntent = new Intent(MainActivity.this, Register.class);
+                Intent myIntent = new Intent(MainActivity.this, RegisterActivity.class);
                 myIntent.putExtra("key", "hello"); //Optional parameters
                 MainActivity.this.startActivity(myIntent);
 

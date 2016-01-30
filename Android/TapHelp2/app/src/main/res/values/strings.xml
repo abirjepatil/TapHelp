@@ -7,17 +7,32 @@
 
     <string name="action_settings">Settings</string>
 
-
-    <string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+    <string-array name="user_type" id="userList">
+            <item>Service Provider</item>
+            <item>Service Receiver</item>
     </string-array>
+
+        <string-array name="service_type" id="servicesList">
+            <item>Cleaning</item>
+            <item>Cooking</item>
+            <item>Electrician</item>
+            <item>Furniture Assembly</item>
+            <item>Gardening</item>
+            <item>General Kitchen Help</item>
+            <item>Installing Appliances</item>
+            <item>Moving</item>
+            <item>Plumbing</item>
+            <item>Wait in line</item>
+            <item>Tutor</item>
+        </string-array>
+
+    <string name="title_activity_login">TapHelp</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="logout">Logout</string>
+    <string name="loginText">Please login with your Google Account</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_activity_home">HomeActivity</string>
 </resources>
 
 
