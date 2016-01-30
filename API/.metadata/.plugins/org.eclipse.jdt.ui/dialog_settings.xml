@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="/Users/abhishekbirjepatil/Desktop/mysql-connector-java-5.1.38" key="org.eclipse.jdt.ui.lastextjar"/>
+	<item value="/Volumes/MAC/Git/TapHelp/Libraries" key="org.eclipse.jdt.ui.lastextjar"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 		<item value="false" key="updateQualifiedNames"/>
 		<item value="*" key="patterns"/>

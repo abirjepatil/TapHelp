@@ -5,8 +5,20 @@ import java.sql.*;
 
 
 public class MySQLAccess {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public String Connect(String username, String usrpassword) {
+
 		System.out.println("-------- MySQL JDBC Connection Testing ------------");
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -14,8 +26,10 @@ public class MySQLAccess {
 			e.printStackTrace();
 			return "[DB01]:DB Driver Error";
 		}
+	 
 		System.out.println("MySQL JDBC Driver Registered!");
 		Connection connection = null;
+
 		try {
 			connection = DriverManager
 					.getConnection("jdbc:mysql://localhost:3306/taphelp","root", "password");
@@ -125,10 +139,11 @@ public class MySQLAccess {
 		Connection connection = null;
 
 		try {
-			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/taphelp","root", "password");
+			connection = DriverManager
+					.getConnection("jdbc:mysql://localhost:3306/taphelp","root", "password");
 			
 			
-				connection = DriverManager.getConnection("jdbc:mysql://127.5.69.2:3306/taphelp","adminiKy82lU", "TIv8hkBlHyF-");
+			//	connection = DriverManager.getConnection("jdbc:mysql://127.5.69.2:3306/taphelp","adminiKy82lU", "TIv8hkBlHyF-");
 
 		} catch (SQLException e) {
 			System.out.println("Connection Failed! Check output console");
@@ -147,7 +162,7 @@ public class MySQLAccess {
 						 ")";
 			      int res = stmt.executeUpdate(sql);
 			      
-			    return Integer.toString(res);  
+			      
 				
 				
 			} catch (SQLException e) {
@@ -167,7 +182,7 @@ public class MySQLAccess {
 				}
 			}
 			
-			
+			return "[DB04]:Connection Success";
 
 			
 			

@@ -1445,3 +1445,228 @@ Caused by: java.lang.UnsupportedClassVersionError: com/yattasolutions/umllab/val
 	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
 	at com.yattasolutions.umllab.validation.a.R(SourceFile:119)
 	... 7 more
+!SESSION 2016-01-29 16:43:33.635 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_31
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/abhishekbirjepatil/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/abhishekbirjepatil/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2016-01-29 16:43:52.033
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Timer.java:555)
+	at java.util.TimerThread.run(Timer.java:505)
+
+!ENTRY org.eclipse.core.net 1 0 2016-01-29 16:43:55.690
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface 2 0 2016-01-29 16:43:56.619
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-01-29 16:43:56.619
+!MESSAGE A conflict occurred for ALT+COMMAND+R:
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.python.pydev.debug.setnext,Set Next Statement,
+		,
+		Category(org.python.pydev.ui.category.run,PyDev - Run,Python run category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4a5a8c6f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5e8f0c54,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-01-29 16:43:56.619
+!MESSAGE A conflict occurred for ALT+COMMAND+C:
+Binding(ALT+COMMAND+C,
+	ParameterizedCommand(Command(de.bastiankrol.startexplorer.copyResourcePathToClipboardFromResourceView,Copy Resource Path to Clipboard,
+		Copies the path of the resource to the clipboard,
+		Category(de.bastiankrol.startexplorer.commands.category,StartExplorer,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2aaed928,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+C,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.modify.method.parameters,Change Method Signature,
+		Change method signature includes parameter names and parameter order,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@155cf9f6,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-01-29 16:43:56.619
+!MESSAGE A conflict occurred for ALT+COMMAND+Q P:
+Binding(ALT+COMMAND+Q P,
+	ParameterizedCommand(Command(org.eclipse.php.ui.explorer,PHP Script Explorer,
+		Shows the Script Explorer,
+		Category(org.eclipse.ui.category.views,Views,Commands for opening views,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@b7b26c6,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+Binding(ALT+COMMAND+Q P,
+	ParameterizedCommand(Command(org.eclipse.ui.views.showView,Show View,
+		Shows a particular view,
+		Category(org.eclipse.ui.category.views,Views,Commands for opening views,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2db07651,
+		[Lorg.eclipse.e4.ui.internal.workbench.Parameter;@718b9d56,,true),[Lorg.eclipse.core.commands.Parameterization;@36a59d8),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-01-29 16:44:02.312
+!MESSAGE Invalid ZIP archive: /Users/abhishekbirjepatil/Desktop/servlet-api.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2016-01-29 16:44:02.315
+!MESSAGE Invalid ZIP archive: /Users/abhishekbirjepatil/Desktop/mysql-connector-java-5.1.38/mysql-connector-java-5.1.38-bin.jar
+
+!ENTRY com.yattasolutions.umllab.ui 4 0 2016-01-29 16:44:02.738
+!MESSAGE No valid license is available.
+!STACK 0
+com.yattasolutions.obf.kk.g: No license found for UML Lab.
+	at YXHQLJ5OO24I3KYIVEHR6476Q6A4G7AOFNMPC477KPFYTPQR3Z26GQ2ABAANQETR3MH4NMJCUSOPO4XD3Q3NN2QJPMNWMESCI5ZXHHATL3HDRARP5UBTRGHQAROUDOQUHFVO44OJT3BIBETWC4WYSF57OHYDLZCDIQM3Q24HZSRT2RJCQRCGSA6DMUXPTKAWCNHSIJRZOPVWMYOEPWRROZVCLBCOAIN7CCHGDEGBEHUG4G7F42TQIADMHDSJ2N736F3CLGLGROTR3F7YT5EQBEGZGZ7I4BDBNIILZSZ5MJDLCJHCBXBBND6JTQ7SH3X2ALGC63776PZ6TJUH5OBHSM5SRMUKN4APOT5L4MZQHRV2V447QEY5F23IVE5YZASZNQUDYPPAW5KA77XDX7FIFZFTUHROMKFKHV3MHMCF7DGKCSURF2AU2ZS265YYOQ7AEM7BMJPZ4F2GUTYNKAE5TUOSDLVZ774BRNY2CDQRZMLFANDYUSJKC7XJHAUMBCVJJNYHGHLUAWGGRJGBGYTSJD7NSUWEXNJSGHBX3KL2WCDAVPIKCPKB6FJBVNZAUSH325Z5A3RAGNH6GNRFMEWNVV7UYL3AAE27RJNFJZAGCHDLZIBBXKHDYWYCZVTJFFLAHFSPQZQQG3YMGE7JXVGNRET2KXW5SA7BYIZEY7YPP37I27IYJCIDYZ6FGWKNZ2TZUO4P7AMSEEUVRBJFLWISOFO4GWPZISIZ5DPONON4G5THMGYFMOOA3KKPLZ525H2GTDUZ5UPYYA6M53FH54BAXSCLLHBMFHZWOKXAGTZRA2KMS7LCHS7TNCHP7AUCST6LV3G2EJNOCMY6BUTJL6WBHWUAAQXLCHZBV6TG4TW2WSLZZPYYJRRP3ZI2244TM5A4IRXYRCR735OX265IXVD4WWEDBYQQCAOXHVPOGD53DNDZNFCXFE2JAFC4LPG22QUNOOLYEDTD7DOSN5ACI77QEEKZFO7JZBWWRY7IGH2SBIZOPRDPUBPP2R6FY26HF5XMVPM4M7QO546EBR4PWRAZ75FWDLFRKS7ZEBL74VFMOVUOQXZQXBHJIX5A3YH2M3WX72PLUQFELXQ2ONASTDGHRFITJATK6GTEGX67RAZK3DCAFARKZHC6LTFJLA62EA3CKZFGD4Y3EAEZYLZYGDR5B2JLHSIGDL2SQWVJYM3O2WLGZQWZU6C63II7P57XCRGFLYBE2GQ52YUOYVO3OI7OVWAZ7UWRB7XKPHMOGXSWRC24XAIYQUNJQ2ZOB3DSVXNNGZSULPVNTRNR77QG4R74ZBWSDUEYCDSXOCJ2JXZR4GXJBE6XMZYA3XYNILJY6U6IYVEBYEY6QZ6DCJIRGDUD7W2337VU2RL73ILI2BOI6UUEJ22IOWC7E4H3AYKGQ6UBR7YLEOUBSM2FODCGWJUQSK7Q4GTF3NMRLQTAM6CO5KFNNNCZSM3IDMIYDN4DOGOXAG5NPYBZLN2IZN7UP6SDWZRBRTTYKAABTIDQBOY3K2PDRN5IFRATHXUEGBJLUWDLBIBWG7FXDHOMQS72ISQQQSH7NP3237U2OAGWC2KQ2TXNKYGU6IZIZU4EHS3EAPSGRKCOUIFUZSPANLGLHGNXGBMTMVYSLDSNLT7QM34X3XJ53HS5UP4X7AUSTTCV5I43KYMGYDXD42GAHFT65MMQZRWDYIP5CROSN2FTPGCJSK3K4SVKKNQE24DRFQWKYVWLTMRUCYTPROXYDXF3VVKAFLKA5HJ424QOEBWATIF2OGXD4NHPIKI7BAS3TFYOZMP654XYJ2BZY775E3NFDNM75KZLKJFKXTWR3A4XO5K2CGLYIQSOG4AB/SW2KEWQEBHAV7C3YGOE4RNJYHB.<unknown>(Unknown Source)
+
+!ENTRY com.yattasolutions.umllab 2 0 2016-01-29 16:44:08.945
+!MESSAGE Unable to configure UML constraint validation
+!STACK 0
+java.lang.ClassNotFoundException: Unable to load synthetic subclass of com.yattasolutions.umllab.validation.f
+	at com.yattasolutions.umllab.validation.a.R(SourceFile:123)
+	at com.yattasolutions.umllab.validation.f.<clinit>(SourceFile:40)
+	at com.yattasolutions.obf.os.a.earlyStartup(SourceFile:17)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:89)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:67)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.Workbench$56.run(Workbench.java:2755)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.lang.UnsupportedClassVersionError: com/yattasolutions/umllab/validation/f__Gen_Configurable has been compiled by a more recent version of the Java Runtime (class file version 0.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at com.yattasolutions.umllab.validation.a$1.ado(SourceFile:109)
+	at com.yattasolutions.umllab.validation.a$1.findClass(SourceFile:91)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at com.yattasolutions.umllab.validation.a.R(SourceFile:119)
+	... 7 more
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2016-01-29 16:52:55.743
+!MESSAGE No valid Android XML Editor Delegate found for file /Servers/Tomcat v7.0 Server at localhost-config/web.xml [Res null, type null]
+!SESSION 2016-01-29 16:56:44.484 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_31
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/abhishekbirjepatil/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/abhishekbirjepatil/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2016-01-29 16:56:50.676
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Timer.java:555)
+	at java.util.TimerThread.run(Timer.java:505)
+
+!ENTRY org.eclipse.core.net 1 0 2016-01-29 16:56:54.210
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface 2 0 2016-01-29 16:56:55.099
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-01-29 16:56:55.099
+!MESSAGE A conflict occurred for ALT+COMMAND+R:
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.python.pydev.debug.setnext,Set Next Statement,
+		,
+		Category(org.python.pydev.ui.category.run,PyDev - Run,Python run category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@40e41f88,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@27b7913,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-01-29 16:56:55.099
+!MESSAGE A conflict occurred for ALT+COMMAND+C:
+Binding(ALT+COMMAND+C,
+	ParameterizedCommand(Command(de.bastiankrol.startexplorer.copyResourcePathToClipboardFromResourceView,Copy Resource Path to Clipboard,
+		Copies the path of the resource to the clipboard,
+		Category(de.bastiankrol.startexplorer.commands.category,StartExplorer,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4d86f330,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+C,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.modify.method.parameters,Change Method Signature,
+		Change method signature includes parameter names and parameter order,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1e8b0ab5,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-01-29 16:56:55.099
+!MESSAGE A conflict occurred for ALT+COMMAND+Q P:
+Binding(ALT+COMMAND+Q P,
+	ParameterizedCommand(Command(org.eclipse.php.ui.explorer,PHP Script Explorer,
+		Shows the Script Explorer,
+		Category(org.eclipse.ui.category.views,Views,Commands for opening views,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7ef34eb3,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+Binding(ALT+COMMAND+Q P,
+	ParameterizedCommand(Command(org.eclipse.ui.views.showView,Show View,
+		Shows a particular view,
+		Category(org.eclipse.ui.category.views,Views,Commands for opening views,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2719139f,
+		[Lorg.eclipse.e4.ui.internal.workbench.Parameter;@5dfc7b3f,,true),[Lorg.eclipse.core.commands.Parameterization;@1b641c97),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY com.yattasolutions.umllab.ui 4 0 2016-01-29 16:57:03.156
+!MESSAGE No valid license is available.
+!STACK 0
+com.yattasolutions.obf.kk.g: No license found for UML Lab.
+	at 6ZGD4WNTLLZAXRCVRD46FQ2WPG66UX6DZWMMW64BZ3XPF5FN4AU44YH43ZL2WZ5GYCHUF246POGGYUPCRHZZEODZ3YDZJHZQZKLQD472BOPTK7FHUARHJO435EHEE26ZBG4BI2NKQBJJ33NSMDIDRHASGAUVJPYPZYBQVVKTSLBIV4LBPJFAUHQJJR52GDFVGBPJAPCCFVJANDMDBZQ45THQRD2UGXUCDT4H4UQUPMPAQHVTAXTCM4PKTFZJM64Y4LAHHLPJICBRJUF3VEWRBI3J3Q6OI55OGT7EOK6K55NKDVMNASRKZUPWS63S47I5WTAGRYNCGOSDYVGCVXUMMFB5HF3YXQCBK2MVN5GTKBP643B3GDI7ITRGRZGZ2VGEJLYJDQVEZKSIW5QJ4N24ASLWZPQW2G7ZLEUPOTOUAVQSRUWTPQU546WZ3QFB5ZYNOXO4YCSN4S2VEJ6PLR6LN5FG2YX3KGIJGOOJOHUAOCYIKJM3MHNXLAPXJ727KCUKIDBINWEKCR4JQSPPU2KYBLTL34QSC3H7FHJ5WW5GT6TTGPAMSDJZQIHHOWLHU45J3HFS55FYUSJHFTK3JEQBA43BC2ZJM2WRMY6QQBJ6ZHLHZCLINZTP5KCJXOPTC5TVJYT4ZJV7A5ED6IGA3TVENUFL2OKNH7XVOFLWSYCC2UHFKS2MO2SVE7NBH5S3MMYGJJZWZCQ3N7NKKX5NFPUA3PL653Q3VDGWTEWQEGISLY2FAIODCZL6LA7KUFDHH44P5A7BVWULQHQFVIHIKWYBMKNA4W4JJNNRUKCBE7NVUS2SIWA6ENIQVSUI57GC7STAGE5CB7ALSYGK2V5H5OHPPVER5FDJHUC7M2E4BJJTPXREWMK7VFBB3ETI764DYZKSLLIIKCNIABQF5KNK6ZAJQLVV7C5KWFYCSAC73ATUYMLY4DEQ4Y3BAEIKMID4P5ONPDKVHG2P3R6XPMSYTVCTTRKEKPG6KHTM64M3JMNWM2XQQCXDITPDPDWPVZAGBN66DNE3R2HR7JPQNDBER4WPJFTTD5BIVWX25OFG74OCO57QTPNTN4FMHXTJHANNA4LOH2TDXLCQT7JXEO364BC3IVY7A54XEJVJPAEAULRESSSPLGCAVGM3U3TYXZGQJUYQT6EDLN2FNN5QPLJK2ELR53ZJEJ5F2PPSWDX3FRZHFIJPOOM545QEV2UQOL4GMHCNGLRIO2DDFSU2HWBIBMOCJIGWV6QMPWAXW5T2UX6HVWFPES3HIDMELGCVUNAEHNAZGCJT3OUTQCGQF7ROXGMZFFM6O3U6TE4MEFMALV2ZRXC5L7ACEYSNGIYNSNZBKUPSHLGYAA3LMMU4R626ZM3PRSBEHZGMR6WZ3FIC6F5BAZ2HZNZJD53SE7ZM5NWDCSZDFRY7MWIZ7UHG4AEJG72EY7N6M4LLJHHDBMXMEBYNMUOQLWHHIQYX6PTV5RFIBXTWM6O4FPORFPGSYPAVTGY66QJRYJEZBS6Z7AETQ6IUCSGUQHNB22EQX4NY26ST357PALNFZIHXXPNLCT3JUQLR4Q4T4CJDTNNKXH3ME6PBU7M46CJL3J5RQ4EGHRFHE6O23ISO3VAR53NPAB253O5BTFJHUE4S3USFSOHE2PIAQROIDU6RAOPQSB425HPI7WO6V2PC5TFY7TV3VBLOYTWD3TZFUDAR46GYBHWEO4MQPZWZUTCI5WRKV4KYPFFBIAOQRV36YIYEHT6F7U5DY77LMK553Y22QCQEO5LHFDZTYKMIW7XOQUJACKB2O3XCD4H3V6GIMYQRHRRTJDYVMERBURSZDG/T2UOTPFZECC4QIN4YPKQPRPPZA.<unknown>(Unknown Source)
+
+!ENTRY com.yattasolutions.umllab 2 0 2016-01-29 16:57:07.619
+!MESSAGE Unable to configure UML constraint validation
+!STACK 0
+java.lang.ClassNotFoundException: Unable to load synthetic subclass of com.yattasolutions.umllab.validation.f
+	at com.yattasolutions.umllab.validation.a.R(SourceFile:123)
+	at com.yattasolutions.umllab.validation.f.<clinit>(SourceFile:40)
+	at com.yattasolutions.obf.os.a.earlyStartup(SourceFile:17)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:89)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:67)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.Workbench$56.run(Workbench.java:2755)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.lang.UnsupportedClassVersionError: com/yattasolutions/umllab/validation/f__Gen_Configurable has been compiled by a more recent version of the Java Runtime (class file version 0.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:642)
+	at com.yattasolutions.umllab.validation.a$1.ado(SourceFile:109)
+	at com.yattasolutions.umllab.validation.a$1.findClass(SourceFile:91)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at com.yattasolutions.umllab.validation.a.R(SourceFile:119)
+	... 7 more
