@@ -31,7 +31,6 @@ public class Register extends HttpServlet {
 		// TODO Auto-generated method stub
 
 	
-				String userId = request.getParameter("UID");
 				String userName = request.getParameter("USER_NAME");
 				String emailId = request.getParameter("EMAIL_ID");
 				String password = request.getParameter("PASSWORD");
@@ -39,25 +38,27 @@ public class Register extends HttpServlet {
 				String fName = request.getParameter("FIRST_NAME");
 				String lName = request.getParameter("LAST_NAME");
 				String address = request.getParameter("ADDRESS");
-				String pincode = request.getParameter("PINCODE");				
+				String pincode = request.getParameter("PINCODE");		
+				String phoneNo = request.getParameter("PHONENO");			
 				
 				response.setContentType("application/json");
 		        PrintWriter out = response.getWriter();
-		        
+		     //   out.println(userName+emailId+password+userType+fName+lName+address+pincode);
 		        MySQLAccess sqlinterface = new MySQLAccess();
 		        //Check if User is Present
 		        String result = sqlinterface.Connect(userName,password);
+		       // out.println(result);
 		        if(result.contains("[AUTH03] User Not Registered"))
 		        {
-		        	sqlinterface.Register(userId, userName , emailId, password,userType,fName,lName,address,pincode);
+		        	out.println(sqlinterface.Register(userName , emailId, password,userType,fName,lName,address,pincode,phoneNo));
 		        	
 		        }
-		        else
-		        {
-		        	out.println("[REG 02] Duplicate User");
-		        	
-		        }
-		     
+//		        else
+//		        {
+//		        	out.println("[REG 02] Duplicate User");
+//		        	
+//		        }
+//		     
 		        out.close();
 	}
 

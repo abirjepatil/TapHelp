@@ -17,11 +17,10 @@ public class MySQLAccess {
 		System.out.println("MySQL JDBC Driver Registered!");
 		Connection connection = null;
 		try {
-			connection = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/taphelp","root", "password");
+			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/taphelp","root", "password");
 			
 			
-			//	connection = DriverManager.getConnection("jdbc:mysql://127.5.69.2:3306/taphelp","adminiKy82lU", "TIv8hkBlHyF-");
+				connection = DriverManager.getConnection("jdbc:mysql://127.5.69.2:3306/taphelp","adminiKy82lU", "TIv8hkBlHyF-");
 
 		} catch (SQLException e) {
 			System.out.println("Connection Failed! Check output console");
@@ -61,7 +60,8 @@ public class MySQLAccess {
 			        	 
 			        	 return "[AUTH02] Incorrect Password";
 			         }
-			         if(!uname.equals(username)&&!password.equals(usrpassword))
+			      //   if(!uname.equals(username)&&!password.equals(usrpassword))
+			         else
 			         {
 			        	 
 			        	 return "[AUTH03] User Not Registered";
@@ -83,7 +83,7 @@ public class MySQLAccess {
 			{
 				
 				try {
-					rs.close();
+					connection.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -109,7 +109,7 @@ public class MySQLAccess {
 	 * 
 	 */
 	
-	public String Register(String userId,String userName ,String emailId,String password,String userType,String fName,String lName,String address,String pincode) {
+	public String Register(String userName ,String emailId,String password,String userType,String fName,String lName,String address,String pincode,String phoneNo) {
 
 		System.out.println("-------- MySQL JDBC Connection Testing ------------");
 
@@ -140,27 +140,44 @@ public class MySQLAccess {
 		if (connection != null) {
 			
 			Statement stmt = null;
-			ResultSet rs=null;
+			ResultSet rs=null;String sql=null;
 			try {
 				stmt = connection.createStatement();
-				 String sql = "INSERT INTO TBL_USER VALUES("+userId+",'"+userName+"',"+
-						 ")";
+				 
+			    sql="INSERT INTO  `taphelp`.`TBL_USER` ("+
+					 	"`USER_NAME` ,"+
+						"`EMAIL_ID` ,"+
+						"`PASSWORD` ,"+
+						"`USER_TYPE` ,"+
+						"`FIRST_NAME` ,"+
+						"`LAST_NAME` ,"+
+						"`ADDRESS` ,"+
+						"`PINCODE` ,"+
+						"`PHONE_NO`"+
+						")"+
+						"VALUES ('"+userName+"','" + emailId +"','"+password+"','"+userType+"','"+fName+"','"+lName+"','"+address+"','"+pincode+"','"+phoneNo+"'"
+					+	")";
+				 
+				
+			 
+				
 			      int res = stmt.executeUpdate(sql);
-			      
-			    return Integer.toString(res);  
+			      return "[DB]"+"Rows Inserted"+Integer.toString(res);  
 				
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return "[DB05]:Create Statement Error";
+				
+				return sql;
+				//return "[DB05]:Create Statement Error";
 		
 			}
 			finally
 			{
 				
 				try {
-					rs.close();
+					connection.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
