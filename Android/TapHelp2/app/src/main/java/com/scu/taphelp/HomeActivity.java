@@ -56,7 +56,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
+        googleSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent googlePlusLoginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(googlePlusLoginIntent);
+            }
+        });
     }
 
     private void initializeRequestQueue() {
