@@ -1,9 +1,14 @@
 package com.scu.taphelp;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,17 +18,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
 
 public class LoginActivity extends Activity implements OnClickListener, ConnectionCallbacks, OnConnectionFailedListener{
     private static final int RC_SIGN_IN = 0;
+
+    private static final int MY_PERMISSIONS_REQUEST_GET_ACCOUNT = 9999;
+
     public static String TAG = "LoginActivity";
     private GoogleApiClient mGoogleApiClient;
     private boolean mIntentInProgress;
@@ -52,6 +63,7 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
     protected void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
+        Log.i(TAG, "Connected to Google API client.");
     }
 
     protected void onStop() {
@@ -59,6 +71,7 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
+        Log.i(TAG, "Disconnected from Google API client.");
     }
 
     private void resolveSignInError() {
@@ -108,6 +121,7 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
         signedInUser = false;
         Toast.makeText(this, "Connected", Toast.LENGTH_LONG).show();
         getProfileInformation();
+        updateProfile(true);
     }
 
     private void updateProfile(boolean isSignedIn) {
@@ -124,18 +138,71 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
         try {
             if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
                 Person currentPerson = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
+
+                /**
+                 * Runtime permissions for reading account details (because API versions >= 23 need to use runtime permissions)
+                 */
+                if (ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.GET_ACCOUNTS)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    /**
+                     * Request the permission without showing explanation of why this permissions is needed
+                     * TODO : Later follow following Google guide on requesting permissions
+                     * https://developer.android.com/training/permissions/requesting.html
+                     * and show an explanation for permissions to user asynchronously and get users response
+                     * and if user denies that then deny the user login into taphelp
+                     */
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.GET_ACCOUNTS},
+                            MY_PERMISSIONS_REQUEST_GET_ACCOUNT);
+                    // MY_PERMISSIONS_REQUEST_GET_ACCOUNT is an
+                    // app-defined int constant. The callback method gets the
+                    // result of the request.
+                } else {
+                    /**
+                     *  Otherwise no need to ask the user explicitly for permissions to get account details
+                     *  The manifest.xml already has permission added : GET_ACCOUNTS
+                     *  So fetch the account data for Google+ account
+                     */
+                    String email = Plus.AccountApi.getAccountName(mGoogleApiClient);
+                    emailLabel.setText(email);
+                }
+
+                // Fetch username details
                 String personName = currentPerson.getDisplayName();
-                String personPhotoUrl = currentPerson.getImage().getUrl();
-                String email = Plus.AccountApi.getAccountName(mGoogleApiClient);
                 username.setText(personName);
-                emailLabel.setText(email);
+                String personPhotoUrl = currentPerson.getImage().getUrl();
+
                 //new LoadProfileImage(image).execute(personPhotoUrl);
                 // update profile frame with new info about Google Account
                 // profile
                 updateProfile(true);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "Error occured while reading Google+ account details : ", e);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_GET_ACCOUNT : {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted.
+                    String email = Plus.AccountApi.getAccountName(mGoogleApiClient);
+                    emailLabel.setText(email);
+
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 
@@ -166,6 +233,7 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
         if (!mGoogleApiClient.isConnecting()) {
             signedInUser = true;
             resolveSignInError();
+
         }
     }
 

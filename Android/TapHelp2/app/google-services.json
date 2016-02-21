@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_id": "taphelp-a53b3",
-    "project_number": "598822561939",
-    "name": "Taphelp"
+    "project_id": "taphelp-1224",
+    "project_number": "272620427536",
+    "name": "TapHelp"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:598822561939:android:ed25abe76629973a",
+        "mobilesdk_app_id": "1:272620427536:android:ed25abe76629973a",
         "client_id": "android:com.scu.taphelp",
         "client_type": 1,
         "android_client_info": {
@@ -16,12 +16,16 @@
       },
       "oauth_client": [
         {
-          "client_id": "598822561939-h4u9s29vv41sp50f538l7lrdsab0tgq4.apps.googleusercontent.com",
+          "client_id": "272620427536-fkr4ltqj9lh8tbrau9olm32ji3nfddhm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.scu.taphelp",
-            "certificate_hash": "6667EBD181968E279B9032F7793B11DBF5D4D3E7"
+            "certificate_hash": "F228A0A24D2F8BB5BD06412CECD83758E3AAAAA7"
           }
+        },
+        {
+          "client_id": "272620427536-8ikhsl7df65ah8u7r9c0hc6rrtlk1vga.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [],
