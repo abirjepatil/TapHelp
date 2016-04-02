@@ -1,0 +1,5 @@
+package com.scu.dataobjects;
+
+public class User {
+
+}

@@ -1,0 +1,404 @@
+package com.scu.taphelp;
+import java.sql.*;
+import java.util.List;
+
+import com.scu.dataobjects.*;
+/*Performs all database activity.
+ * Establishes a connection does database activity and closes the connection.
+ * 
+ */
+
+public class MySQLAccess {
+
+
+
+	/*
+	 *  @author Abhishek Birjepatil
+	 *  @version 1.0 March 30th 2016.
+	 *  @param isProduction Specifies if the database server is the one that is hosted on Openshift(if true) or the localhost(if false)
+	 *  @throws A SQL Exception if unable to create the connection
+	 *  @return the Connection String for the Selected Server. 
+	 */
+	private Connection getConnectionStringProduction(boolean isProduction) throws SQLException{
+		if(isProduction)
+		{
+			return DriverManager.getConnection("jdbc:mysql://127.5.69.2:3306/taphelp","adminiKy82lU", "TIv8hkBlHyF-");
+		}
+		else
+		{
+			return	DriverManager.getConnection("jdbc:mysql://localhost:3306/taphelp","root", "password");
+		}
+	}
+
+
+	/*Establish a connection to the database
+	 * @author Abhishek Birjepatil
+	 * @version 1.0 March 30th 2016
+	 * @param void
+	 * @throws A SQL Exception if unable to connect to the database.
+	 * @return Connection Object
+	 * */
+	public Connection establishConnection() throws SQLException
+	{
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new SQLException(); //Issue with driver Exception
+		}
+
+		try {
+			connection = getConnectionStringProduction(false);
+
+		} catch (SQLException e) {
+			throw new SQLException(); //Cannot establish connection. Issue can be with the connectivity.
+		}
+		return connection;
+	}
+
+
+	/* @desc Validates the username and password entered by the User.
+	 * @author Abhishek Birjepatil
+	 * @version 1.0 March 30th 2016
+	 * @param void
+	 * @return Status Message of the Login Request
+	 * @TODO : Change Return Type to an enum which defines a list of errors and success messages.
+	 * */
+	public String NativeLogin(String username, String usrpassword) {
+		Connection connection;
+		try {
+			connection = establishConnection();
+			if (connection != null) {
+				Statement stmt = null;
+				ResultSet rs=null;
+				try {
+					stmt = connection.createStatement();
+					String sql = "SELECT * FROM TBL_USER";
+					rs = stmt.executeQuery(sql);
+					//STEP 5: Extract data from result set
+					while(rs.next()){
+						//Retrieve by column name
+						int uid  = rs.getInt("UID");
+						String uname = rs.getString("USER_NAME");
+						String password = rs.getString("PASSWORD");
+						/* CURRENTLY NOT REQUIRED.
+						String emailId = rs.getString("EMAIL_ID");
+						int usrType = rs.getInt("USER_TYPE");
+						String fname = rs.getString("FIRST_NAME");
+						String lname = rs.getString("LAST_NAME");
+						String address = rs.getString("ADDRESS");
+						int pincode = rs.getInt("PINCODE");
+						 */
+						if(uname.equals(username)&&password.equals(usrpassword))
+						{
+							return "[AUTH01] Success";
+						}
+						if(uname.equals(username)&&!password.equals(usrpassword))
+						{
+							return "[AUTH02] Incorrect Password";
+						}
+						else  //Bad Programming Practice. DO NOT LEAVE CONTROL STATEMENTS DEFAULT. CHECK IT LATER FOR BUGS.
+						{
+							return "[AUTH03] User Not Registered";
+						}
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return "[DB05]:Create Statement Error";
+				}
+				finally
+				{
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				return "[DB04]:Connection Success";
+			} else {
+				System.out.println("Failed to make connection!");
+				return "[DB03]:DB Network Error";
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return null;
+	}
+
+
+	/*@desc General Function for Executing a query and returning a resultset
+	 *@author Abhishek Birjepatil
+	 *@version 1.0 March 30th 2016
+	 *@param String query
+	 *@return ResultSet
+	 *@throw SQL Exception
+	 */
+	public ResultSet readTable(String query) throws SQLException
+	{
+		
+		Connection connection = null;
+		try
+		{
+	    connection = establishConnection();
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		return rs;
+		}
+		catch(SQLException e1)
+		{
+			
+		}
+		finally
+		{
+			connection.close();
+		
+		}
+		return null;
+	}
+
+	/*@desc Gets the ID of the LastUser Registered. The ID of the Last user registered is re
+	 *      required for saving the service mapping. It is only required when the type of the
+	 *      user is a Service provider.
+	 *@author Abhishek Birjepatil
+	 *@version 1.0 March 30th 2016
+	 *@param void
+	 *@return UID of the last inserted record in the user table 
+	 * @throw SQL Exception
+	 */
+	public int getLastInsertedRecord()
+	{
+		int lastid = -1;
+		Connection connection = null;
+		String query = "SELECT MAX(UID) AS LATEST_ID FROM TBL_USER";
+		try
+		{
+		  connection = establishConnection();
+		  Statement stmt = connection.createStatement();
+		  ResultSet rs = stmt.executeQuery(query);
+		  rs.last();
+		  lastid=rs.getInt(1);
+		//  System.out.println(lastid);
+		}
+		catch(SQLException ex)
+		{
+		}
+		finally
+		{
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return lastid;
+		}
+	}
+	
+	/*@desc Checks for duplicate user registered in the database.
+	 *@author Abhishek Birjepatil
+	 *@version 1.0 March 30th 2016
+	 *@param username
+	 *@return true if user already exists 
+	 * @throw SQL Exception
+	 */
+	public boolean checkForDuplicateRecord(String userName)
+	{
+		String query = "SELECT * FROM TBL_USER WHERE USER_NAME = '"+userName+"'";
+		Connection connection = null;
+		try
+		{
+	    connection = establishConnection();
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		if(!rs.next()||rs==null)
+		{
+			return false;
+		}
+		
+		}
+		catch(SQLException e1)
+		{
+			
+		}
+		finally
+		{
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		}
+		
+		
+		return true;
+	}
+	
+	
+	
+	public boolean insertServiceMapping(int UID,List<String> serviceId)
+	{
+		Connection connection;
+		String query = "INSERT INTO TBL_SERVICE_MAP(UID,SID) VALUES";
+		String elements= "";
+		for(int i=0;i<serviceId.size();i++)
+		{
+			elements=elements+"("+UID+','+serviceId.get(i)+")";
+			elements+=",";
+		}
+		
+		//Remove last extra comma
+		elements=elements.substring(0, elements.length()-1);
+		query+=elements;
+		try {
+			
+			connection = establishConnection();
+			Statement stmt = connection.createStatement();
+			if (connection != null) {
+				 int res = stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+				 return true;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+		
+		return false;
+		
+	}
+	
+	
+	/* @desc Registers a new user in the taphelp database
+	 * @author Abhishek Birjepatil
+	 * @version 1.0 March 30th 2016
+	 * @param void
+	 * @return Status Message of the Login Request
+	 * @TODO : Change Return Type to an enum which defines a list of errors and success messages.
+	 * */	
+	public String Register(User newUser) {
+		Connection connection;
+		try {
+			connection = establishConnection();
+			if (connection != null) {
+				Statement stmt = null;
+				ResultSet rs=null;String sql=null;
+				try {
+					stmt = connection.createStatement();
+					sql="INSERT INTO  `taphelp`.`TBL_USER` ("+
+							"`USER_NAME` ,"+
+							"`EMAIL_ID` ,"+					
+							"`PASSWORD` ,"+
+							"`USER_TYPE` ,"+
+							"`FIRST_NAME` ,"+
+							"`LAST_NAME` ,"+
+							"`ADDRESS` ,"+
+							"`PINCODE` ,"+
+							"`PHONENO` ,"+
+							"`AUTH_TYPE`"+
+							")"+
+							"VALUES ('"+newUser.userName+"','" + newUser.emailId +"','"+newUser.password+"','"+newUser.userType+"','"+newUser.fName+"','"+newUser.lName+"','"+newUser.address+"','"+newUser.pincode+"','"+newUser.phoneNo+"',"+newUser.authType
+							+	")";
+					 int res = stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+
+					 int lastRecord = getLastInsertedRecord();
+					
+					return "[DB]"+"Rows Inserted"+Integer.toString(res)+lastRecord;  
+
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+
+					return sql;
+					//return "[DB05]:Create Statement Error";
+
+				}
+				finally
+				{
+
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+
+
+
+
+
+			} else {
+				System.out.println("Failed to make connection!");
+				return "[DB03]:DB Network Error";
+
+			}
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	
+	/* @desc Validates the username and password entered by the User.
+	 * @author Abhishek Birjepatil
+	 * @version 1.0 March 30th 2016
+	 * @param void
+	 * @return Status Message of the Login Request
+	 * @TODO : Change Return Type to an enum which defines a list of errors and success messages.
+	 * */
+	public boolean GoogleLogin(String emailId) {
+		String query = "SELECT * FROM TBL_USER WHERE EMAIL_ID="+emailId+"AND AUTH_TYPE=2";
+		Connection connection = null;
+		try
+		{
+	    connection = establishConnection();
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		if(rs.next())
+		{
+			return true; //User Present
+		}
+		else
+		{
+			return false;
+		}
+		}
+	
+		catch(SQLException e1)
+		{
+			
+		}
+		finally
+		{
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		}
+		
+		
+		return false;
+	}
+
+	
+	
+	
+	
+	
+}

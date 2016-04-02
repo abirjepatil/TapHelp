@@ -1,0 +1,23 @@
+
+public class Main {
+	public static String StringReverse(String input)
+	{
+		String output = null;
+		String tokensArray[]= input.split(" ");
+		System.out.println(tokensArray.length);
+		System.out.println(tokensArray[3]);
+		for(int i=tokensArray.length;i>0;i--)
+		{
+			output+=tokensArray[i];
+			
+		}
+
+	return output;
+	}
+	
+	public static void main(String[] args)
+	{
+		
+		System.out.println(StringReverse("Alice like Cats"));
+	}
+}

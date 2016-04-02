@@ -6,9 +6,16 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="/Volumes/MAC/Git/TapHelp/Libraries/servlet-api.jar"/>
 	<classpathentry kind="lib" path="/Volumes/MAC/Git/TapHelp/Libraries/mysql-connector-java-5.1.38-bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/Volumes/MAC/Git/TapHelp/Libraries/google-api-java-client/libs/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/Volumes/MAC/Git/TapHelp/Libraries/google-api-java-client/libs/jsr305-1.3.9.jar"/>
+	<classpathentry kind="lib" path="/Volumes/MAC/Git/TapHelp/Libraries/google-api-java-client/libs/protobuf-java-2.4.1.jar"/>
+	<classpathentry kind="lib" path="/Volumes/MAC/Git/TapHelp/Libraries/google-api-java-client/libs/transaction-api-1.1.jar"/>
+	<classpathentry kind="lib" path="/Volumes/MAC/Git/TapHelp/Libraries/google-api-java-client/libs/xpp3-1.1.4c.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Volumes/MAC/Git/TapHelp/Libraries/google-api-java-client/libs/gson-2.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

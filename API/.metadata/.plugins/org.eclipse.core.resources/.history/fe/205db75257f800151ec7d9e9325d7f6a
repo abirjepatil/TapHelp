@@ -1,0 +1,27 @@
+package com.scu.taphelp;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class VerifyAuthToken {
+
+    public static void main(String s[]) {
+        try {
+        URL urldemo = new URL("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=ya29..twJde1sc7KydBjtvpgGivOHSWdHE_rgfu00hFRqlsJCtRkXKD7_CZWtBm5mP9T27EA");
+        URLConnection yc = urldemo.openConnection();
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                yc.getInputStream()));
+        String inputLine;
+        String JSON = "";
+        while ((inputLine = in.readLine()) != null)
+        {
+        	JSON+=inputLine;
+        }
+        in.close();
+        }catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+}

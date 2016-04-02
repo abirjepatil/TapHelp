@@ -33,9 +33,8 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("password");
 		response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        
         MySQLAccess sqlinterface = new MySQLAccess();
-        out.println(sqlinterface.Connect(userName,password));
+        out.println(sqlinterface.NativeLogin(userName,password));
         out.close();
 	}
 

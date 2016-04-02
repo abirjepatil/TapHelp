@@ -2,6 +2,10 @@ package com.scu.taphelp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.scu.dataobjects.*;
 /**
  * Servlet implementation class Register
  */
@@ -34,32 +39,53 @@ public class Register extends HttpServlet {
 				String userName = request.getParameter("USER_NAME");
 				String emailId = request.getParameter("EMAIL_ID");
 				String password = request.getParameter("PASSWORD");
-				String userType = request.getParameter("USER_TYPE");
+				int userType = Integer.parseInt(request.getParameter("USER_TYPE")); //Service Provider or a Service Reciever
 				String fName = request.getParameter("FIRST_NAME");
 				String lName = request.getParameter("LAST_NAME");
 				String address = request.getParameter("ADDRESS");
 				String pincode = request.getParameter("PINCODE");		
-				String phoneNo = request.getParameter("PHONENO");			
+				String phoneNo = request.getParameter("PHONENO");		
+				String servicesListed = request.getParameter("SERVICES");
+				int authType  = Integer.parseInt(request.getParameter("AUTHTYPE")); //Defines if its a google plus login or a native login
+				List<String> serviceList = Arrays.asList(servicesListed.split(","));
+				System.out.println(servicesListed);
+					
+				
+				
 				
 				response.setContentType("application/json");
 		        PrintWriter out = response.getWriter();
-		     //   out.println(userName+emailId+password+userType+fName+lName+address+pincode);
 		        MySQLAccess sqlinterface = new MySQLAccess();
-		        //Check if User is Present
-		        String result = sqlinterface.Connect(userName,password);
-		       // out.println(result);
-		        if(result.contains("[AUTH03] User Not Registered"))
-		        {
-		        	out.println(sqlinterface.Register(userName , emailId, password,userType,fName,lName,address,pincode,phoneNo));
-		        	
-		        }
-//		        else
-//		        {
-//		        	out.println("[REG 02] Duplicate User");
-//		        	
-//		        }
-//		     
-		        out.close();
+		 	        if(!sqlinterface.checkForDuplicateRecord(userName)) //If no duplicate records
+			        {
+			        	User registerNew = new User(userName , emailId, password,userType,fName,lName,address,pincode,phoneNo,authType);
+			            //If it is a Service User
+			        	//Do nothing
+			        	System.out.println(userType);
+			        	if(userType==1)
+			        	{
+			        		out.println(sqlinterface.Register(registerNew));
+					 		
+			        	}
+			        	//If it is a Service Provider Map the Services
+			        	if(userType==2)
+			        	{
+			        		out.println(sqlinterface.Register(registerNew));//Register New User Same Type
+			        		//Get the UID of the last inserted 
+			        		int latestInsertedUID= sqlinterface.getLastInsertedRecord();
+			        		sqlinterface.insertServiceMapping(latestInsertedUID, serviceList);
+			        		//System.out.println(latestInsertedUID);
+			        	}
+			      
+			        }
+			        else
+			        {
+			        	out.println("[REG 02] Duplicate User");
+			        	
+			        }
+			        out.close();
+					
+		    
 	}
 
 	/**

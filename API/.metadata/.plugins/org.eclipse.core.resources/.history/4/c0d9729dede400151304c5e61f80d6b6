@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+
+public class Main {
+	
+	/*@Author: Komal Shirore
+	 *@params: input String to reverse tokens
+	 *@return: Reversed Tokens
+	 */
+	public  String StringReverse(String input)
+	{
+		String output = "";
+		String tokensArray[]= input.split(" ");
+		if (tokensArray.length==0)
+		{
+			return " ";
+		}
+			for(int i=tokensArray.length-1;i>=0;i--)
+		{
+			output+=tokensArray[i]+" ";
+			
+		}
+
+	return output;
+	}
+	
+	public static void main(String[] args)
+	{
+		Main a = new Main();
+		 Scanner sc=new Scanner(System.in);
+		 String line = sc.nextLine();
+		 System.out.println(a.StringReverse(line));
+	}
+}

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Volumes/MAC/Git/TapHelp/Android/listview_load_data_from_json/app/build/intermediates/res/merged/debug/layout/cell.xml",
+        "source": "/Volumes/MAC/Git/TapHelp/Android/listview_load_data_from_json/app/src/main/res/layout/cell.xml"
+    },
+    {
+        "merged": "/Volumes/MAC/Git/TapHelp/Android/listview_load_data_from_json/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Volumes/MAC/Git/TapHelp/Android/listview_load_data_from_json/app/src/main/res/layout/activity_main.xml"
+    }
+]
