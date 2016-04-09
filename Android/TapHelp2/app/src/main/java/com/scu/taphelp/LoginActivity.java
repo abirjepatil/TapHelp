@@ -127,9 +127,9 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
     private void updateProfile(boolean isSignedIn) {
         if (isSignedIn) {
             signinFrame.setVisibility(View.GONE);
-            profileFrame.setVisibility(View.GONE);
-            Intent dashBoardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
-            startActivity(dashBoardIntent);
+            profileFrame.setVisibility(View.VISIBLE);
+           // Intent dashBoardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
+           // startActivity(dashBoardIntent);
         } else {
             signinFrame.setVisibility(View.VISIBLE);
             profileFrame.setVisibility(View.GONE);
