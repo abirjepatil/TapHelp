@@ -1,17 +1,38 @@
 <resources>
+    <!--Name of Application-->
     <string name="app_name">TapHelp</string>
-    <string name="title_activity_dashboard">DashboardActivity</string>
 
+    <!--Heading of All Screens in App Bar-->
+    <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <!--Menu Options-->
     <string name="action_settings">Settings</string>
 
+    <!--All Fields present on Sign Up Screen-->
+    <string name="registerText">SignUp Here.</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="userName">Username</string>
+    <string name="email">Email Id</string>
+    <string name="password">Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="phone">Contact number</string>
+    <string name="zipCode">5 Digit Zipcode</string>
+    <string name="address">Postal Address</string>
+    <string name="submit">Sign Up</string>
+
+
+    <!--Type of User-->
+    <string name="user_type_prompt">Select User Type</string>
     <string-array name="user_type" id="userList">
-            <item>Service Provider</item>
-            <item>Service Receiver</item>
+        <item>Service Provider</item>
+        <item>Service Receiver</item>
     </string-array>
 
+    <!--Services provider and services provided by the Service Provider-->
+    <string name="service_type_prompt">Select Service Type</string>
     <string-array name="service_type" id="servicesList">
         <item>Cleaning</item>
         <item>Cooking</item>
@@ -26,15 +47,37 @@
         <item>Tutor</item>
     </string-array>
 
+    <!--Sign In Screen-->
+    <string name="textLogo">Welcome To TapHelp</string>
+    <string name="signInBtn">Sign In</string>
+    <string name="forgotPwd">Forgot Password?</string>
+    <string name="divider_or">OR</string>
+    <string name="googleSignIn">Sign In With Google</string>
+    <string name="loginText">Please login with your Google Account</string>
+    <string name="logout">Logout</string>
+
+
+    <!--Update Information-->
+    <string name="updateInfoText">Edit Information</string>
+    <string name="update">Update</string>
+
+    <!--Delete Account-->
+    <string name="delete">Delete Account</string>
+
+
+    <!--All Messages-->
+    <string name="msgSignInSuccess">Sign-In Successful</string>
+    <string name="msgSignInFail">Sign-In Failed.Please Try Again</string>
+    <string name="msgSignUpSuccess">Your Account Has Been Created Successfully</string>
+    <string name="msgSignUpFail">Enter All the Fields To SignUp Successfully</string>
+    <string name="wrongPassword">Please Enter the Correct Password</string>
+    <string name="wrongUserName">Invalid UserName</string>
+    <string name="noUser">User Does not Exists.Please SignUp</string>
+
+    <!--Titles-->
     <string name="title_activity_home">TapHelp</string>
     <string name="title_activity_login">TapHelp</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="logout">Logout</string>
-    <string name="loginText">Please login with your Google Account</string>
-    <string name="title_activity_main2">MainActivity2</string>
-    <string name="divider_or">OR</string>
-    <string name="service_type_prompt">Select Service Type</string>
-    <string name="user_type_prompt">Select User Type</string>
+
 </resources>
 
 

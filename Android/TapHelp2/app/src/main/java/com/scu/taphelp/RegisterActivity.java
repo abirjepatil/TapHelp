@@ -34,6 +34,8 @@ public class RegisterActivity
     private TextView registerLogo;
     private EditText firstName;
     private EditText lastName;
+    private EditText userName;
+    private EditText email;
     private EditText password;
     private EditText confirmPassword;
     private EditText phoneNumber;
@@ -59,6 +61,8 @@ public class RegisterActivity
         registerLogo = (TextView) findViewById(R.id.registerText);
         firstName = (EditText) findViewById(R.id.firstName);
         lastName = (EditText) findViewById(R.id.lastName);
+        userName = (EditText) findViewById(R.id.userName);
+        email = (EditText) findViewById(R.id.email);
 
         password = (EditText) findViewById(R.id.password);
         confirmPassword = (EditText) findViewById(R.id.confirmPassword);

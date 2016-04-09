@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="10dp"
-        android:text="Welcome To TapHelp"
+        android:text="@string/textLogo"
         android:textSize="24dp"
         android:textStyle="bold"
         android:layout_gravity="center"
@@ -53,7 +53,7 @@
             android:layout_margin="10dp"
             android:textColor="@color/black"
             android:gravity="left"
-            android:hint="Username"
+            android:hint="@string/userName"
             android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
@@ -69,7 +69,7 @@
             android:layout_margin="10dp"
             android:textColor="@color/black"
             android:gravity="left"
-            android:hint="Password "
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:typeface="normal" />
     </android.support.design.widget.TextInputLayout>
@@ -86,7 +86,7 @@
         android:background="@drawable/button_border"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Sign In"
+        android:text="@string/signInBtn"
        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="14dp"
@@ -99,7 +99,7 @@
             android:layout_toRightOf="@id/signInBtn"
             android:background="@drawable/button_border"
             android:onClick="registerUser"
-            android:text="Sign Up"
+            android:text="@string/submit"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="14dp"
@@ -120,7 +120,7 @@
         android:autoText="false"
         android:clickable="true"
         android:gravity="center"
-        android:text="Forgot Password?"
+        android:text="@string/forgotPwd"
         android:textSize="14dp" />
     <LinearLayout
         android:layout_width="match_parent"
@@ -166,7 +166,7 @@
         android:background="@drawable/common_plus_signin_btn_text_dark_focused"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Sign In with Google"
+        android:text="@string/googleSignIn"
         android:textColor="#ffffff"
         android:textSize="14dp"
         android:textStyle="normal|bold" />
