@@ -3,172 +3,174 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:paddingBottom="20dp"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:paddingTop="40dp"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.scu.taphelp.HomeActivity"
-    tools:showIn="@layout/activity_home">
-
-   <ImageView
-       android:id="@+id/tapHelpImageLogo"
-       android:layout_width="match_parent"
-       android:layout_height="120dp"
-       android:layout_marginBottom="20dp"
-       android:layout_gravity="top"
-       android:src="@drawable/taphelplogo"
-       />
-    <TextView
-        android:id="@+id/textLogo"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="10dp"
-        android:text="Welcome To TapHelp"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="40dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.scu.taphelp.HomeActivity"
+        tools:showIn="@layout/activity_home">
 
-        />
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/email"
+        <ImageView
+            android:id="@+id/tapHelpImageLogo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textColor="@color/black"
-            android:gravity="left"
-            android:hint="Username"
-            android:inputType="textEmailAddress" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textColor="@color/black"
-            android:gravity="left"
-            android:hint="Password "
-            android:inputType="textPassword"
-            android:typeface="normal" />
-    </android.support.design.widget.TextInputLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="2">
-    <Button
-        android:id="@+id/signInBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/button_border"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="Sign In"
-       android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="14dp"
-        android:textStyle="normal|bold"
-        android:layout_weight="1"/>
-    <Button
-            android:id="@+id/createAccountBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/signInBtn"
-            android:background="@drawable/button_border"
-            android:onClick="registerUser"
-            android:text="Sign Up"
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textSize="14dp"
-            android:textStyle="normal|bold"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1"/>
-</LinearLayout>
-
-    <TextView
-        android:id="@+id/forgotPwd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/signInBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:autoLink="web"
-        android:autoText="false"
-        android:clickable="true"
-        android:gravity="center"
-        android:text="Forgot Password?"
-        android:textSize="14dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:weightSum="1">
-
-        <View
-            android:id="@+id/viewTwo"
-            android:layout_width="0dp"
-            android:layout_height="4dp"
-            android:layout_weight="0.45"
-            android:background="@color/colorPrimary" />
+            android:layout_height="120dp"
+            android:layout_gravity="top"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/taphelplogo" />
 
         <TextView
-            android:id="@+id/orText"
-            android:layout_width="0dp"
+            android:id="@+id/textLogo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:gravity="center_horizontal"
-            android:text="@string/divider_or"
-            android:textColor="@color/colorAccent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Welcome To TapHelp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24dp"
             android:textStyle="bold"
+
             />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="4dp"
-            android:layout_weight="0.45"
-            android:background="@color/colorPrimary" />
-    </LinearLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/googleSignIn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/forgotPwd"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:background="@drawable/common_plus_signin_btn_text_dark_focused"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="Sign In with Google"
-        android:textColor="#ffffff"
-        android:textSize="14dp"
-        android:textStyle="normal|bold" />
-</LinearLayout>
+            <EditText
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="left"
+                android:hint="Username"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="left"
+                android:hint="Password "
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:typeface="normal" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/signInBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_border"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Sign In"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:textStyle="normal|bold" />
+
+            <Button
+                android:id="@+id/createAccountBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@id/signInBtn"
+                android:layout_weight="1"
+                android:background="@drawable/button_border"
+                android:padding="10dp"
+                android:text="Sign Up"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="14dp"
+                android:textStyle="normal|bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/forgotPwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/signInBtn"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:autoLink="web"
+            android:autoText="false"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="Forgot Password?"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <View
+                android:id="@+id/viewTwo"
+                android:layout_width="0dp"
+                android:layout_height="4dp"
+                android:layout_weight="0.45"
+                android:background="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/orText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:gravity="center_horizontal"
+                android:text="@string/divider_or"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="4dp"
+                android:layout_weight="0.45"
+                android:background="@color/colorPrimary" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/googleSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/forgotPwd"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/common_plus_signin_btn_text_dark_focused"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Sign In with Google"
+            android:textColor="#ffffff"
+            android:textSize="14dp"
+            android:textStyle="normal|bold" />
+    </LinearLayout>
 </ScrollView>

@@ -1,14 +1,12 @@
 package com.scu.taphelp;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,29 +21,30 @@ import com.scu.taphelp.utils.TapHelpRequestQueue;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by ${Aasawari} on 4/8/16.
+ */
+public class GmailRegistrationActivity extends NativeRegistrationActivity {
+    protected TextView registerText;
+    protected TextInputLayout userName;
+    protected TextInputLayout firstName;
+    protected TextInputLayout lastName;
+    protected TextInputLayout emailId;
+    protected TextInputLayout password;
+    protected TextInputLayout confirmPassword;
+    protected TextInputLayout phoneNumber;
+    protected TextInputLayout zipCode;
+    protected TextInputLayout address;
+    protected Spinner userType;
+    protected MultiSelectionSpinner serviceType;
+    protected Button register;
 
-public class RegisterActivity
-        extends
-            AppCompatActivity
-        implements
-            OnItemSelectedListener,
-            MultiSelectionSpinner.OnMultipleItemsSelectedListener {
+    protected String user_type;
+    private String auth_type;
 
-    private TextView registerLogo;
-    private EditText firstName;
-    private EditText lastName;
-    private EditText password;
-    private EditText confirmPassword;
-    private EditText phoneNumber;
-    private EditText zipCode;
-    private EditText address;
-    private Spinner userType;
-    private MultiSelectionSpinner serviceType;
-    private Button submit;
-
-    private String user_type;
-
-    private List<String> service_type = new ArrayList<String>();
+    protected List<String> service_type = new ArrayList<String>();
+    private static StringBuffer services;
+    protected String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,22 +52,32 @@ public class RegisterActivity
         setContentView(R.layout.activity_register);
 
         intializeView();
+
+        Intent gmailIntent = getIntent();
+        firstName.getEditText().setText(gmailIntent.getStringExtra("firstName"));
+        lastName.getEditText().setText(gmailIntent.getStringExtra("lastName"));
+        userName.getEditText().setText(gmailIntent.getStringExtra("userName").replaceAll("\\s+",""));
+        emailId.getEditText().setText(gmailIntent.getStringExtra("emailID"));
+        token = gmailIntent.getStringExtra("token");
+
     }
 
     private void intializeView() {
-        registerLogo = (TextView) findViewById(R.id.registerText);
-        firstName = (EditText) findViewById(R.id.firstName);
-        lastName = (EditText) findViewById(R.id.lastName);
+        registerText = (TextView) findViewById(R.id.registerText);
+        firstName = (TextInputLayout) findViewById(R.id.input_layout_firstName);
+        lastName = (TextInputLayout) findViewById(R.id.input_layout_lastName);
+        userName = (TextInputLayout) findViewById(R.id.input_layout_userName);
+        emailId = (TextInputLayout) findViewById(R.id.input_layout_email);
 
-        password = (EditText) findViewById(R.id.password);
-        confirmPassword = (EditText) findViewById(R.id.confirmPassword);
-
-        if(!matchPassWords(password.getText().toString(),confirmPassword.getText().toString())){
+        password = (TextInputLayout) findViewById(R.id.input_layout_password);
+        confirmPassword = (TextInputLayout) findViewById(R.id.input_layout_confirmPassword);
+        if(!matchPassWords(password.getEditText().getText().toString(),confirmPassword.getEditText().getText().toString())){
             Toast.makeText(this,"The passwords you entered does not match!", Toast.LENGTH_LONG).show();
         }
-        phoneNumber = (EditText) findViewById(R.id.phone);
-        zipCode = (EditText) findViewById(R.id.zipCode);
-        address = (EditText) findViewById(R.id.address);
+
+        phoneNumber = (TextInputLayout) findViewById(R.id.input_layout_phone);
+        zipCode = (TextInputLayout) findViewById(R.id.input_layout_zipCode);
+        address = (TextInputLayout) findViewById(R.id.input_layout_postalAddress);
 
         userType = (Spinner) findViewById(R.id.userType);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -95,8 +104,8 @@ public class RegisterActivity
             serviceType.setVisibility(View.GONE);
         }
 
-        submit = (Button) findViewById(R.id.submit);
-        submit.setOnClickListener(new View.OnClickListener() {
+        register = (Button) findViewById(R.id.submit);
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 insertUserToDB();
@@ -106,8 +115,20 @@ public class RegisterActivity
 
     @Override
     public void selectedStrings(List<String> strings) {
-        //Toast.makeText(this, strings.toString(), Toast.LENGTH_LONG).show();
-        service_type.addAll(strings);
+        if(strings != null){
+            services = new StringBuffer();
+            for(int i=0;i<strings.size();i++){
+                if(i<strings.size()-1){
+                    services.append(strings.get(i)+",");
+                }else{
+                    services.append(strings.get(i));
+                }
+            }
+        }
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override
@@ -116,8 +137,19 @@ public class RegisterActivity
     }
 
     private void initializeRequestQueue() {
-        String url = "http://taphelp-taphelp.rhcloud.com/Register?UID=3&USER_NAME=test&EMAIL_ID=test&PASSWORD=23456&USER_TYPE=2&FIRST_NAME=at&LAST_NAME=nt&ADDRESS=SantaClara&PINCODE=123456";
+        //TBD : Change AuthType Logic Later
+        if(user_type == "2" && services==null){
+            Toast.makeText(this, "Please choose atleast one service!", Toast.LENGTH_LONG);
+        }
+        String url = new StringBuffer().append("http://taphelp-taphelp.rhcloud.com/GmailRegistration?USER_NAME=")
+                .append(userName.getEditText().getText().toString()).append("&EMAIL_ID=").append(emailId.getEditText().getText().toString()).append("&PASSWORD=").append(password.getEditText().getText().toString())
+                .append("&USER_TYPE=").append(user_type).append("&FIRST_NAME=")
+                .append(firstName.getEditText().getText().toString()).append("&LAST_NAME=").append(lastName.getEditText().getText().toString()).append("&ADDRESS=")
+                .append(address.getEditText().getText().toString()).append("&PINCODE=").append(zipCode.getEditText().getText().toString())
+                .append("&PHONENO=").append(phoneNumber.getEditText().getText().toString()).append("&SERVICES=")
+                .append(services).append("&AUTHTOKEN=").append(token).append("&AUTHTYPE=").append(auth_type).toString();
 
+        //String url = getURL();
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -146,19 +178,20 @@ public class RegisterActivity
         {
             if(spinner.getItemAtPosition(pos).toString().equalsIgnoreCase("Service Receiver")) {
                 serviceType.setVisibility(View.GONE);
+                user_type = "1";
+                auth_type = "1";
+                services = new StringBuffer().append("NULL");
             } else {
                 serviceType.setVisibility(View.VISIBLE);
+                user_type = "2";
+                auth_type = "0";
             }
-            user_type = spinner.getItemAtPosition(pos).toString();
+            //user_type = spinner.getItemAtPosition(pos).toString();
         }
-//        else if(spinner.getId() == R.id.serviceType)
-//        {
-//            service_type.add(spinner.getItemAtPosition(pos).toString());
-//        }
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
+        Toast.makeText(this, "Please choose at least one service!", Toast.LENGTH_LONG);
     }
 
     public boolean matchPassWords(String password,String confirmPassword)
@@ -176,5 +209,6 @@ public class RegisterActivity
 
     //TODO : Insert all the details to DB
     public void insertUserToDB(){
+        initializeRequestQueue();
     }
 }

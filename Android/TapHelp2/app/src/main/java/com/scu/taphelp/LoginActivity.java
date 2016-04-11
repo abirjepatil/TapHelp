@@ -1,10 +1,13 @@
 package com.scu.taphelp;
 
 import android.Manifest;
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -16,24 +19,25 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.GoogleAuthException;
+import com.google.android.gms.auth.GoogleAuthUtil;
+import com.google.android.gms.auth.UserRecoverableAuthException;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
 
-public class LoginActivity extends Activity implements OnClickListener, ConnectionCallbacks, OnConnectionFailedListener{
-    private static final int RC_SIGN_IN = 0;
+import java.io.IOException;
 
+public class LoginActivity extends Activity implements OnClickListener, ConnectionCallbacks, OnConnectionFailedListener {
+    private static final int RC_SIGN_IN = 0;
     private static final int MY_PERMISSIONS_REQUEST_GET_ACCOUNT = 9999;
+    private static final int REQ_SIGN_IN_REQUIRED = 55664;
 
     public static String TAG = "LoginActivity";
     private GoogleApiClient mGoogleApiClient;
@@ -44,6 +48,8 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
     private ImageView image;
     private TextView username, emailLabel;
     private LinearLayout profileFrame, signinFrame;
+    private String firstName, lastName, userName, emailId;
+    private String token = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +69,18 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
     protected void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
+        new RetrieveTokenTask().execute(getAccountName());
+
+        if(token != null){
+            Intent intent = new Intent(getApplicationContext(), GmailRegistrationActivity.class);
+            intent.putExtra("firstName",firstName);
+            intent.putExtra("lastName",lastName);
+            intent.putExtra("token",token);
+            intent.putExtra("emailID",emailId);
+            intent.putExtra("userName",userName);
+            startActivity(intent);
+        }
+
         Log.i(TAG, "Connected to Google API client.");
     }
 
@@ -103,6 +121,10 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
 
     @Override
     protected void onActivityResult(int requestCode, int responseCode, Intent intent) {
+        if (requestCode == REQ_SIGN_IN_REQUIRED && responseCode == RESULT_OK) {
+            // We had to sign in - now we can finish off the token request.
+            new RetrieveTokenTask().execute(getAccountName());
+        }
         switch (requestCode) {
             case RC_SIGN_IN:
                 if (responseCode == RESULT_OK) {
@@ -111,6 +133,7 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
                 mIntentInProgress = false;
                 if (!mGoogleApiClient.isConnecting()) {
                     mGoogleApiClient.connect();
+                    new RetrieveTokenTask().execute(getAccountName());
                 }
                 break;
         }
@@ -119,9 +142,16 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
     @Override
     public void onConnected(Bundle arg0) {
         signedInUser = false;
-        Toast.makeText(this, "Connected", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Connected", Toast.LENGTH_LONG).show();
         getProfileInformation();
-        updateProfile(true);
+        //updateProfile(true);
+        Intent intent = new Intent(getApplicationContext(), GmailRegistrationActivity.class);
+        intent.putExtra("firstName",firstName);
+        intent.putExtra("lastName",lastName);
+        intent.putExtra("token",token);
+        intent.putExtra("emailID",emailId);
+        intent.putExtra("userName",userName);
+        startActivity(intent);
     }
 
     private void updateProfile(boolean isSignedIn) {
@@ -164,13 +194,15 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
                      *  The manifest.xml already has permission added : GET_ACCOUNTS
                      *  So fetch the account data for Google+ account
                      */
-                    String email = Plus.AccountApi.getAccountName(mGoogleApiClient);
-                    emailLabel.setText(email);
+                    emailId = Plus.AccountApi.getAccountName(mGoogleApiClient);
+                    emailLabel.setText(emailId);
                 }
 
                 // Fetch username details
-                String personName = currentPerson.getDisplayName();
-                username.setText(personName);
+                userName = currentPerson.getDisplayName();
+                username.setText(userName);
+                firstName = currentPerson.getName().getGivenName();
+                lastName = currentPerson.getName().getFamilyName();
                 String personPhotoUrl = currentPerson.getImage().getUrl();
 
                 //new LoadProfileImage(image).execute(personPhotoUrl);
@@ -187,7 +219,7 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_GET_ACCOUNT : {
+            case MY_PERMISSIONS_REQUEST_GET_ACCOUNT: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -267,4 +299,43 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
 
         return super.onOptionsItemSelected(item);
     }
+
+    private String getAccountName() {
+        String accountName = null;
+
+        AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+        Account[] list = manager.getAccounts();
+        for (Account account : list) {
+            if (account.type.equalsIgnoreCase("com.google")) {
+                accountName = account.name;
+                break;
+            }
+        }
+        return accountName;
+    }
+
+    private class RetrieveTokenTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            String accountName = params[0];
+            String scopes = "oauth2:profile email https://www.googleapis.com/auth/plus.login";
+            try {
+                token = GoogleAuthUtil.getToken(getApplicationContext(), accountName, scopes);
+            } catch (IOException e) {
+                Log.e(TAG, e.getMessage());
+            } catch (UserRecoverableAuthException e) {
+                startActivityForResult(e.getIntent(), REQ_SIGN_IN_REQUIRED);
+            } catch (GoogleAuthException e) {
+                Log.e(TAG, e.getMessage());
+            }
+            return token;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+    }
+
 }

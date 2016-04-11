@@ -3,12 +3,7 @@ package com.scu.taphelp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,7 +19,7 @@ import com.scu.taphelp.utils.TapHelpRequestQueue;
 public class HomeActivity extends AppCompatActivity {
     private ImageView tapHelpImageLogo;
     private TextView textLogo;
-    private EditText email;
+    private EditText userName;
     private EditText password;
     private Button signInBtn;
     private TextView forgotPwd;
@@ -42,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
 
         tapHelpImageLogo = (ImageView) findViewById(R.id.tapHelpImageLogo);
         textLogo = (TextView) findViewById(R.id.textLogo);
-        email = (EditText) findViewById(R.id.email);
+        userName = (EditText) findViewById(R.id.userName);
         password = (EditText) findViewById(R.id.password);
         signInBtn = (Button) findViewById(R.id.signInBtn);
         signInBtn.setOnClickListener(new View.OnClickListener() {
@@ -52,18 +47,19 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         forgotPwd = (TextView) findViewById(R.id.forgotPwd);
-        googleSignIn = (Button) findViewById(R.id.googleSignIn);
 
         createAccountBtn = (Button) findViewById(R.id.createAccountBtn);
         createAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent registerIntent = new Intent(getApplicationContext(), RegisterActivity.class);
+                Toast.makeText(getApplicationContext(), "Clicked on signup",Toast.LENGTH_LONG);
+                Intent registerIntent = new Intent(getApplicationContext(), GmailRegistrationActivity.class);
                 startActivity(registerIntent);
 
             }
         });
 
+        googleSignIn = (Button) findViewById(R.id.googleSignIn);
         googleSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void initializeRequestQueue() {
-        String url = "http://taphelp-taphelp.rhcloud.com/Login?username=" + email.getText().toString() + "&password=" + password.getText().toString();
+        String url = "http://taphelp-taphelp.rhcloud.com/Login?username="+userName.getText().toString()+"&password="+password.getText().toString();
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -85,7 +81,11 @@ public class HomeActivity extends AppCompatActivity {
                         // Display the first 500 characters of the response string.
                         //TextView responseMessage = new TextView(getApplicationContext());
                         //responseMessage.setText("Response is: "+ response);
-                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+                        Toast.makeText(HomeActivity.this, response, Toast.LENGTH_LONG).show();
+                        if("[AUTH01] Success\n".equals(response)) {
+                            Intent intent = new Intent(HomeActivity.this, DashboardActivity.class);
+                            startActivity(intent);
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -98,7 +98,6 @@ public class HomeActivity extends AppCompatActivity {
         TapHelpRequestQueue.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-    //TODO : Implement method to validate credentials onClick of signInBtn
     public void validateCredentials() {
         initializeRequestQueue();
     }
@@ -107,7 +106,5 @@ public class HomeActivity extends AppCompatActivity {
     public void retrievePassword() {
 
     }
-
-
     //TODO : Refactor code in LoginActivity to handle click on googleSignIn button
 }
