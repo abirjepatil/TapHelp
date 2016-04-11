@@ -14,9 +14,8 @@
         android:paddingBottom="20dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="40dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".UpdateInformation">
+        android:paddingTop="60dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TextView
             android:id="@+id/updateInfoText"
