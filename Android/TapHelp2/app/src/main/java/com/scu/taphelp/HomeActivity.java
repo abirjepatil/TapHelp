@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -85,15 +86,27 @@ public class HomeActivity extends AppCompatActivity {
                         // Display the first 500 characters of the response string.
                         //TextView responseMessage = new TextView(getApplicationContext());
                         //responseMessage.setText("Response is: "+ response);
-                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+
+                        if("[AUTH01] Success\n".equalsIgnoreCase(response)) {
+                            Log.i(TAG, "Authentication succeeded for user " + email.getText().toString());
+                            Intent dashBoardIntent = new Intent(HomeActivity.this, DashboardActivity.class);
+                            startActivity(dashBoardIntent);
+                        } else {
+                            //Authentication not successful
+                            Log.i(TAG, "Authentication failed for user " + email.getText().toString());
+                        }
+
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                TextView errorMessage = new TextView(getApplicationContext());
-                errorMessage.setText("That didn't work!");
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        TextView errorMessage = new TextView(getApplicationContext());
+                        errorMessage.setText("Error occurred during sign in!!");
+                    }
             }
-        });
+        );
         // Add the request to the RequestQueue.
         TapHelpRequestQueue.getInstance(this).addToRequestQueue(stringRequest);
     }

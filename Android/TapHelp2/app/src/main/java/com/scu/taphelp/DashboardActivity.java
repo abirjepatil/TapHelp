@@ -110,34 +110,36 @@ public class DashboardActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-
-            Intent myIntent = new Intent(DashboardActivity.this, AppointmentActivity.class);
-            myIntent.putExtra("key", "hello"); //Optional parameters
-            DashboardActivity.this.startActivity(myIntent);
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-            Intent myIntent = new Intent(DashboardActivity.this, PaymentActivity.class);
-            myIntent.putExtra("key", "hello"); //Optional parameters
-            DashboardActivity.this.startActivity(myIntent);
-
-        } else if (id == R.id.nav_slideshow) {
-
-            Intent myIntent = new Intent(DashboardActivity.this, NewServiceActivity.class);
-            myIntent.putExtra("key", "hello"); //Optional parameters
-            DashboardActivity.this.startActivity(myIntent);
-
-        } else if (id == R.id.nav_manage) {
-
-            Intent myIntent = new Intent(DashboardActivity.this, RequestsActivity.class);
-            myIntent.putExtra("key", "hello"); //Optional parameters
-            DashboardActivity.this.startActivity(myIntent);
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        switch(id) {
+//            case R.id.nav_camera :
+//                Intent appointMentIntent = new Intent(DashboardActivity.this, AppointmentActivity.class);
+//                appointMentIntent.putExtra("key", "hello"); //Optional parameters
+//                DashboardActivity.this.startActivity(appointMentIntent);
+//                // Handle the camera action
+//                break;
+//            case nav_gallery :
+//                Intent paymentIntent = new Intent(DashboardActivity.this, PaymentActivity.class);
+//                paymentIntent.putExtra("key", "hello"); //Optional parameters
+//                DashboardActivity.this.startActivity(paymentIntent);
+//                break;
+//            case R.id.nav_slideshow :
+//                Intent newServiceIntent = new Intent(DashboardActivity.this, NewServiceActivity.class);
+//                newServiceIntent.putExtra("key", "hello"); //Optional parameters
+//                DashboardActivity.this.startActivity(newServiceIntent);
+//                break;
+//            case R.id.nav_manage :
+//                Intent myRequestsIntent = new Intent(DashboardActivity.this, RequestsActivity.class);
+//                myRequestsIntent.putExtra("key", "hello"); //Optional parameters
+//                DashboardActivity.this.startActivity(myRequestsIntent);
+//                break;
+//            case R.id.nav_share :
+//                break;
+//            case R.id.nav_send :
+//                break;
+            case R.id.settings :
+                Intent settingsIntent = new Intent(DashboardActivity.this, TapHelpSettingsActivity.class);
+                DashboardActivity.this.startActivity(settingsIntent);
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

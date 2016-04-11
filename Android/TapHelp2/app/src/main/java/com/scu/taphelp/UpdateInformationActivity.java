@@ -1,9 +1,9 @@
 package com.scu.taphelp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-public class UpdateInformation extends AppCompatActivity {
+public class UpdateInformationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

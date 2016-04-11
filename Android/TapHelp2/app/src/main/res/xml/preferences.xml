@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:title="Account"
+        android:key="account_settings_key">
+
+        <Preference android:key="updateUserAccount" android:title="Update Account" >
+            <intent android:targetPackage="com.scu.taphelp" android:targetClass="com.scu.taphelp.UpdateInformationActivity" />
+        </Preference>
+
+        <com.scu.taphelp.custom.CustomConfirmationDialogPreference
+            android:title="Delete Account"
+            android:key="deleteUserAccount"
+            android:dialogIcon="@mipmap/ic_launcher"
+            android:dialogMessage="Are you sure you want to delete this account?"
+            android:positiveButtonText="Yes"
+            android:negativeButtonText="No">
+        </com.scu.taphelp.custom.CustomConfirmationDialogPreference>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
