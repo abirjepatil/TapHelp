@@ -12,27 +12,29 @@
             <item>Service Receiver</item>
     </string-array>
 
-        <string-array name="service_type" id="servicesList">
-            <item>Cleaning</item>
-            <item>Cooking</item>
-            <item>Electrician</item>
-            <item>Furniture Assembly</item>
-            <item>Gardening</item>
-            <item>General Kitchen Help</item>
-            <item>Installing Appliances</item>
-            <item>Moving</item>
-            <item>Plumbing</item>
-            <item>Wait in line</item>
-            <item>Tutor</item>
-        </string-array>
+    <string-array name="service_type" id="servicesList">
+        <item>Cleaning</item>
+        <item>Cooking</item>
+        <item>Electrician</item>
+        <item>Furniture Assembly</item>
+        <item>Gardening</item>
+        <item>General Kitchen Help</item>
+        <item>Installing Appliances</item>
+        <item>Moving</item>
+        <item>Plumbing</item>
+        <item>Wait in line</item>
+        <item>Tutor</item>
+    </string-array>
 
+    <string name="title_activity_home">TapHelp</string>
     <string name="title_activity_login">TapHelp</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="logout">Logout</string>
     <string name="loginText">Please login with your Google Account</string>
     <string name="title_activity_main2">MainActivity2</string>
-    <string name="title_activity_home">HomeActivity</string>
+    <string name="divider_or">OR</string>
+    <string name="service_type_prompt">Select Service Type</string>
+    <string name="user_type_prompt">Select User Type</string>
 </resources>
 
 
