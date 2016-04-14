@@ -27,6 +27,9 @@ public class User {
 		this.phoneNo=phoneNo;
 		this.authType=authType;
 	}
-	
+	public User(String userName)
+	{
+		this.userName=userName;
+	}
 	
 }

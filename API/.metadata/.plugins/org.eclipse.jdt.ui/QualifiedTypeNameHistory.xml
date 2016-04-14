@@ -14,5 +14,6 @@
 <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
 <fullyQualifiedTypeName name="com.scu.taphelp.VerifyAuthToken"/>
 <fullyQualifiedTypeName name="com.scu.taphelp.GmailRegistration"/>
+<fullyQualifiedTypeName name="com.scu.dataobjects.User"/>
 <fullyQualifiedTypeName name="com.scu.taphelp.MySQLAccess"/>
 </qualifiedTypeNameHistroy>
